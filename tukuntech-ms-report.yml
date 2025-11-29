@@ -1,0 +1,78 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8086
+  servlet:
+    context-path: /api/v1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+cors:
+  allowed-origins:
+    - http://localhost:4200
+    - http://localhost:8081
+  allowed-methods:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    - OPTIONS
+  allowed-headers:
+    - "*"
+  allow-credentials: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+app:
+  security:
+    jwt:
+      issuer: tukuntech-api
+      access-token-expiration: 1800000       # 30 min
+      refresh-token-expiration: 1209600000   # 14 días
+      maximum-sessions: 5
+
+  seed:
+    enabled: false
+    admin:
+      email: admin@tukuntech.com
+    attendant:
+      email: attendant@tukuntech.com
+    patient:
+      email: patient@tukuntech.com
+
+monitoring:
+  service:
+    url: http://localhost:8084/api/v1
