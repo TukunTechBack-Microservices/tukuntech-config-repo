@@ -13,6 +13,7 @@ spring:
           "[/**]":
             allowedOrigins:
               - http://localhost:4200
+              - https://tukuntech-front.netlify.app
             allowedMethods:
               - GET
               - POST
