@@ -32,42 +32,42 @@ spring:
       routes:
         # ========= RUTAS DE OPENAPI (DOCS) =========
         - id: auth-openapi
-          uri: lb://TUKUNTECH-MS-IAM
+          uri: https://tukuntech-ms-iam.onrender.com
           predicates:
             - Path=/api/v1/auth/v3/api-docs/**
           filters:
             - RewritePath=/api/v1/auth/v3/api-docs(?<segment>/?.*), /api/v1/v3/api-docs${segment}
 
         - id: profiles-openapi
-          uri: lb://TUKUNTECH-MS-PROFILES
+          uri: https://tukuntech-ms-profiles.onrender.com
           predicates:
             - Path=/api/v1/profiles/v3/api-docs/**
           filters:
             - RewritePath=/api/v1/profiles/v3/api-docs(?<segment>/?.*), /api/v1/v3/api-docs${segment}
 
         - id: support-openapi
-          uri: lb://TUKUNTECH-MS-SUPPORT
+          uri: https://tukuntech-ms-support.onrender.com
           predicates:
             - Path=/api/v1/support/v3/api-docs/**
           filters:
             - RewritePath=/api/v1/support/v3/api-docs(?<segment>/?.*), /api/v1/v3/api-docs${segment}
 
         - id: reports-openapi
-          uri: lb://TUKUNTECH-MS-REPORT
+          uri: https://tukuntech-ms-reports.onrender.com
           predicates:
             - Path=/api/v1/reports/v3/api-docs/**
           filters:
             - RewritePath=/api/v1/reports/v3/api-docs(?<segment>/?.*), /api/v1/v3/api-docs${segment}
 
         - id: monitoring-openapi
-          uri: lb://TUKUNTECH-MS-MONITORING
+          uri: https://tukuntech-ms-monitoring.onrender.com
           predicates:
             - Path=/api/v1/monitoring/v3/api-docs/**
           filters:
             - RewritePath=/api/v1/monitoring/v3/api-docs(?<segment>/?.*), /api/v1/v3/api-docs${segment}
 
         - id: care-openapi
-          uri: lb://TUKUNTECH-MS-CARE
+          uri: https://tukuntech-ms-care.onrender.com
           predicates:
             - Path=/api/v1/care/v3/api-docs/**
           filters:
@@ -75,17 +75,12 @@ spring:
 
         # ========= RUTAS DE NEGOCIO =========
         - id: auth
-          uri: lb://TUKUNTECH-MS-IAM
+          uri: https://tukuntech-ms-iam.onrender.com
           predicates:
             - Path=/api/v1/auth/**
-        #    filters:
-        #      - name: CircuitBreaker
-        #        args:
-        #          name: authCircuitBreaker
-        #          fallbackUri: forward:/fallback/auth
 
         - id: profiles
-          uri: lb://TUKUNTECH-MS-PROFILES
+          uri: https://tukuntech-ms-profiles.onrender.com
           predicates:
             - Path=/api/v1/profiles/**
           filters:
@@ -95,7 +90,7 @@ spring:
                 fallbackUri: forward:/fallback/profiles
 
         - id: support
-          uri: lb://TUKUNTECH-MS-SUPPORT
+          uri: https://tukuntech-ms-support.onrender.com
           predicates:
             - Path=/api/v1/support/**
           filters:
@@ -105,7 +100,7 @@ spring:
                 fallbackUri: forward:/fallback/support
 
         - id: reports
-          uri: lb://TUKUNTECH-MS-REPORT
+          uri: https://tukuntech-ms-reports.onrender.com
           predicates:
             - Path=/api/v1/reports/**
           filters:
@@ -115,7 +110,7 @@ spring:
                 fallbackUri: forward:/fallback/reports
 
         - id: monitoring
-          uri: lb://TUKUNTECH-MS-MONITORING
+          uri: https://tukuntech-ms-monitoring.onrender.com
           predicates:
             - Path=/api/v1/monitoring/**
           filters:
@@ -125,7 +120,7 @@ spring:
                 fallbackUri: forward:/fallback/monitoring
 
         - id: care
-          uri: lb://TUKUNTECH-MS-CARE
+          uri: https://tukuntech-ms-care.onrender.com
           predicates:
             - Path=/api/v1/care/**
           filters:
@@ -161,7 +156,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
 
 # ===================== RESILIENCE4J =====================
 resilience4j:
